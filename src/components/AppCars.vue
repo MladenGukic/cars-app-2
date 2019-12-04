@@ -37,6 +37,10 @@ export default {
     deleteCar(id) {
         carService.delete(id)
         .then(this.cars = this.cars.filter(car => car.id !== id))
+      },
+
+      navigateToView(id) {
+        return this.$router.push({name: 'car', params: {id}})
       }
   }
 }

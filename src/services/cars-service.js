@@ -9,6 +9,10 @@ export default class CarService {
         return axios.get("cars")
     }
 
+    get(id) {
+        return axios.get(`cars/${id}`)
+    }
+
     delete(id) {
         return axios.delete(`cars/${id}`)
     }
