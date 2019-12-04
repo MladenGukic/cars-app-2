@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <ul class="list-group" v-for="car in cars" :key="car.id">
+    <h3> All cars: </h3>
+    <input class="form-control" type="text" v-model="search" placeholder="Search cars"/>
+    <ul class="list-group" v-for="car in filteredCars" :key="car.id">
       <li class="list-group-item"> 
         {{car.brand}} {{car.model}}
         <button class="btn btn-secondary" @click="deleteCar(car.id)"> Delete </button>
@@ -15,13 +17,20 @@ import {carService} from '../services/cars-service'
 export default {
   data() {
     return {
-      cars: []
+      cars: [],
+      search: ""
     }
   },
 
   created() {
     carService.getAll()
     .then(r => this.cars = r.data)
+  },
+
+  computed: {
+    filteredCars() {
+      return this.cars.filter(car => car.brand.toLowerCase().match(this.search.toLowerCase()))
+    }
   },
 
   methods: {
@@ -36,7 +45,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin-left: 20px;
 }
 ul {
   list-style-type: none;
