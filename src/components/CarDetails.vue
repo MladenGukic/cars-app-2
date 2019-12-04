@@ -33,7 +33,7 @@
     </tr>
   </tbody>
 </table>
-<button class="btn btn-primary"> Edit </button> 
+<button class="btn btn-primary" @click="navigateToEditCar(car.id)"> Edit </button> 
 </div>
 </template>
 
@@ -49,6 +49,12 @@ export default {
     created() {
         carService.get(this.$route.params.id)
         .then(r => this.car = r.data)
+    },
+
+    methods: {
+        navigateToEditCar(id) {
+            this.$router.push({name: "edit", params: {id}})
+        }
     }
 }
 </script>

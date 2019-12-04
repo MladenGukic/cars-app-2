@@ -20,6 +20,10 @@ export default class CarService {
     add(car) {
         return axios.post(`cars`, car)
     }
+
+    edit(id, car) {
+        return axios.put(`cars/${id}`, car)
+    }
 }
 
 export const  carService = new CarService()
