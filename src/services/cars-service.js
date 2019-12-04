@@ -5,8 +5,12 @@ export default class CarService {
         axios.defaults.baseURL = 'http://localhost:8000/api/'
     }
 
-    getCars() {
+    getAll() {
         return axios.get("cars")
+    }
+
+    delete(id) {
+        return axios.delete(`cars/${id}`)
     }
 }
 

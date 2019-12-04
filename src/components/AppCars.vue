@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <ul class="list-group" v-for="car in cars" :key="car.id">
-      <li class="list-group-item"> {{car.brand}} {{car.model}}</li>
+      <li class="list-group-item"> 
+        {{car.brand}} {{car.model}}
+        <button class="btn btn-secondary" @click="deleteCar(car.id)"> Delete </button>
+        <button class="btn btn-primary" @click="navigateToView(car.id)"> View </button>
+      </li>
     </ul>
   </div>
 </template>
@@ -16,8 +20,15 @@ export default {
   },
 
   created() {
-    carService.getCars()
+    carService.getAll()
     .then(r => this.cars = r.data)
+  },
+
+  methods: {
+    deleteCar(id) {
+        carService.delete(id)
+        .then(this.cars = this.cars.filter(car => car.id !== id))
+      }
   }
 }
 </script>
@@ -37,5 +48,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+button {
+  float:right
 }
 </style>
