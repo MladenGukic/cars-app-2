@@ -32,7 +32,9 @@
       <td>{{car.numberOfDoors}}</td>
     </tr>
   </tbody>
-</table></div>
+</table>
+<button class="btn btn-primary"> Edit </button> 
+</div>
 </template>
 
 <script>
@@ -52,5 +54,7 @@ export default {
 </script>
 
 <style>
-
+button {
+    float: right;
+}
 </style>
